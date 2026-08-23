@@ -2,17 +2,17 @@ namespace LanguageFeaturesCSharp;
 
 internal static class Async
 {
-    public static async Task ZeigenAsync()
+    public static async Task ShowAsync()
     {
-        int ergebnis = await BerechneAsync(6, 7);
-        Console.WriteLine(ergebnis);
+        int result = await CalculateAsync(6, 7);
+        Console.WriteLine(result);
     }
 
-    // async Methode: kann mit "await" auf eine asynchrone Operation warten,
-    // ohne dabei den Thread zu blockieren. Task<T> ist der "Behaelter" fuer das spaetere Ergebnis.
-    private static async Task<int> BerechneAsync(int a, int b)
+    // async method: can use "await" to wait for an asynchronous operation
+    // without blocking the thread. Task<T> is the "container" for the later result.
+    private static async Task<int> CalculateAsync(int a, int b)
     {
-        await Task.Delay(100); // simuliert eine dauernde Operation, z. B. einen Netzwerkaufruf
+        await Task.Delay(100); // simulates a long-running operation, e.g. a network call
         return a * b;
     }
 }

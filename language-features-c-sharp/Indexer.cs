@@ -1,41 +1,41 @@
 namespace LanguageFeaturesCSharp;
 
-// Eigene Klasse mit Indexer: erlaubt den Zugriff mit eckigen Klammern wie bei einem Array,
-// obwohl intern ein Dictionary die Daten haelt.
-internal class Wochenplan
+// Custom class with an indexer: allows square-bracket access like an array,
+// even though a dictionary holds the data internally.
+internal class WeeklySchedule
 {
-    private readonly Dictionary<string, string> termineNachTag = new();
+    private readonly Dictionary<string, string> appointmentsByDay = new();
 
-    // Indexer: definiert this[...], get liest, set schreibt einen Wert unter dem angegebenen Schluessel
-    public string this[string tag]
+    // Indexer: defines this[...], get reads, set writes a value under the given key
+    public string this[string day]
     {
-        get => termineNachTag.TryGetValue(tag, out string? termin) ? termin : "frei";
-        set => termineNachTag[tag] = value;
+        get => appointmentsByDay.TryGetValue(day, out string? appointment) ? appointment : "free";
+        set => appointmentsByDay[day] = value;
     }
 }
 
 internal static class Indexer
 {
-    public static void Zeigen()
+    public static void Show()
     {
-        Wochenplan plan = new Wochenplan();
+        WeeklySchedule schedule = new WeeklySchedule();
 
-        // Zuweisung ueber den Indexer, genau wie bei einem Array
-        plan["Montag"] = "Zahnarzt";
-        plan["Mittwoch"] = "Meeting";
+        // Assignment via the indexer, just like an array
+        schedule["Monday"] = "Dentist";
+        schedule["Wednesday"] = "Meeting";
 
-        // Lesen ueber den Indexer
-        string montagTermin = plan["Montag"];
-        string dienstagTermin = plan["Dienstag"]; // kein Eintrag vorhanden -> "frei"
+        // Reading via the indexer
+        string mondayAppointment = schedule["Monday"];
+        string tuesdayAppointment = schedule["Tuesday"]; // no entry present -> "free"
 
-        Console.WriteLine(montagTermin);
-        Console.WriteLine(dienstagTermin);
+        Console.WriteLine(mondayAppointment);
+        Console.WriteLine(tuesdayAppointment);
 
-        // Liste von Tagen: LINQ nutzt den Indexer, um pro Tag den Termin abzufragen
-        List<string> tage = new List<string> { "Montag", "Dienstag", "Mittwoch" };
+        // List of days: LINQ uses the indexer to look up the appointment for each day
+        List<string> days = new List<string> { "Monday", "Tuesday", "Wednesday" };
 
-        List<string> terminplan = tage.Select(tag => $"{tag}: {plan[tag]}").ToList();
+        List<string> plan = days.Select(day => $"{day}: {schedule[day]}").ToList();
 
-        Console.WriteLine(string.Join(" | ", terminplan));
+        Console.WriteLine(string.Join(" | ", plan));
     }
 }

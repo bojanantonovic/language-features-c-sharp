@@ -2,49 +2,49 @@ namespace LanguageFeaturesCSharp;
 
 internal static class Strings
 {
-    public static void Zeigen()
+    public static void Show()
     {
         string name = "Alice";
-        int alter = 30;
-        double preis = 19.999;
+        int age = 30;
+        double price = 19.999;
 
-        // String-Interpolation: Werte direkt im String einsetzen, mit $ vor den Anfuehrungszeichen
-        string begruessung = $"Hallo, {name}!";
+        // String interpolation: insert values directly into the string, with $ before the quotes
+        string greeting = $"Hello, {name}!";
 
-        // Auch Berechnungen sind innerhalb von {} moeglich
-        string altersinfo = $"{name} ist {alter} Jahre alt, in 10 Jahren {alter + 10}.";
+        // Calculations are also possible inside {}
+        string ageInfo = $"{name} is {age} years old, in 10 years {age + 10}.";
 
-        // Formatierung innerhalb von {}: :F2 rundet auf 2 Nachkommastellen
-        string preisText = $"Preis: {preis:F2}";
+        // Formatting inside {}: :F2 rounds to 2 decimal places
+        string priceText = $"Price: {price:F2}";
 
-        Console.WriteLine(begruessung);
-        Console.WriteLine(altersinfo);
-        Console.WriteLine(preisText);
+        Console.WriteLine(greeting);
+        Console.WriteLine(ageInfo);
+        Console.WriteLine(priceText);
 
-        // Verbatim-String (@"..."): Escape-Zeichen wie \ werden nicht interpretiert, nuetzlich fuer Pfade
-        string pfad = @"C:\Daten\Alice\Notizen.txt";
+        // Verbatim string (@"..."): escape characters like \ are not interpreted, useful for paths
+        string path = @"C:\Data\Alice\Notes.txt";
 
-        // Split: zerlegt einen String an einem Trennzeichen in mehrere Teile
-        string csv = "Apfel, Birne , Kirsche";
-        string[] teile = csv.Split(',');
+        // Split: breaks a string into several parts at a separator
+        string csv = "Apple, Pear , Cherry";
+        string[] parts = csv.Split(',');
 
-        // Trim entfernt Leerzeichen am Anfang/Ende jedes Teils
-        List<string> getrimmteTeile = new List<string>();
-        foreach (string teil in teile)
+        // Trim removes whitespace at the start/end of each part
+        List<string> trimmedParts = new List<string>();
+        foreach (string part in parts)
         {
-            getrimmteTeile.Add(teil.Trim());
+            trimmedParts.Add(part.Trim());
         }
 
-        // Join: fuegt mehrere Teile wieder zu einem String zusammen
-        string zusammengefuegt = string.Join(" | ", getrimmteTeile);
+        // Join: combines several parts back into one string
+        string joined = string.Join(" | ", trimmedParts);
 
-        // Pruefungen auf Teilstrings
-        bool enthaeltBirne = zusammengefuegt.Contains("Birne");
-        bool startetMitApfel = zusammengefuegt.StartsWith("Apfel");
+        // Substring checks
+        bool containsPear = joined.Contains("Pear");
+        bool startsWithApple = joined.StartsWith("Apple");
 
-        Console.WriteLine(pfad);
-        Console.WriteLine(zusammengefuegt);
-        Console.WriteLine(enthaeltBirne);
-        Console.WriteLine(startetMitApfel);
+        Console.WriteLine(path);
+        Console.WriteLine(joined);
+        Console.WriteLine(containsPear);
+        Console.WriteLine(startsWithApple);
     }
 }

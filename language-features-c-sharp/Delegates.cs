@@ -1,59 +1,59 @@
 namespace LanguageFeaturesCSharp;
 
-// Eigener Delegate-Typ: beschreibt nur die Signatur einer Methode (Parameter + Rueckgabewert)
-internal delegate int RechenOperation(int a, int b);
+// Custom delegate type: only describes the signature of a method (parameters + return value)
+internal delegate int CalculationOperation(int a, int b);
 
-// Klasse mit einem Event: benachrichtigt andere Codeteile, wenn sich etwas aendert
-internal class Konto
+// Class with an event: notifies other parts of the code when something changes
+internal class Account
 {
-    public decimal Guthaben { get; private set; }
+    public decimal Balance { get; private set; }
 
-    // Event basiert auf einem Delegate (hier: Action<decimal>)
-    public event Action<decimal>? GuthabenGeaendert;
+    // Event based on a delegate (here: Action<decimal>)
+    public event Action<decimal>? BalanceChanged;
 
-    public void Einzahlen(decimal betrag)
+    public void Deposit(decimal amount)
     {
-        Guthaben += betrag;
-        GuthabenGeaendert?.Invoke(Guthaben); // loest das Event aus, falls jemand zuhoert
+        Balance += amount;
+        BalanceChanged?.Invoke(Balance); // raises the event, if anyone is listening
     }
 }
 
 internal static class Delegates
 {
-    public static void Zeigen()
+    public static void Show()
     {
-        // Delegate: einer Methode zuweisen und wie eine Variable aufrufen
-        RechenOperation addieren = Addieren;
-        int summe = addieren(3, 4);
+        // Delegate: assign to a method and call it like a variable
+        CalculationOperation add = Add;
+        int sum = add(3, 4);
 
-        // Delegate: einem Lambda-Ausdruck zuweisen
-        RechenOperation multiplizieren = (a, b) => a * b;
-        int produkt = multiplizieren(3, 4);
+        // Delegate: assign to a lambda expression
+        CalculationOperation multiply = (a, b) => a * b;
+        int product = multiply(3, 4);
 
-        Console.WriteLine(summe);
-        Console.WriteLine(produkt);
+        Console.WriteLine(sum);
+        Console.WriteLine(product);
 
-        // Liste von Delegates: LINQ kann jeden einzelnen auf dieselben Argumente anwenden
-        List<RechenOperation> operationen = new List<RechenOperation>
+        // List of delegates: LINQ can apply each one to the same arguments
+        List<CalculationOperation> operations = new List<CalculationOperation>
         {
-            Addieren,
+            Add,
             (a, b) => a * b,
             (a, b) => a - b,
         };
 
-        List<int> ergebnisse = operationen.Select(operation => operation(10, 3)).ToList();
+        List<int> results = operations.Select(operation => operation(10, 3)).ToList();
 
-        Console.WriteLine(string.Join(", ", ergebnisse));
+        Console.WriteLine(string.Join(", ", results));
 
-        // Event abonnieren: die Lambda wird aufgerufen, sobald GuthabenGeaendert ausgeloest wird
-        Konto konto = new Konto();
-        konto.GuthabenGeaendert += neuesGuthaben => Console.WriteLine(neuesGuthaben);
+        // Subscribe to the event: the lambda is called as soon as BalanceChanged is raised
+        Account account = new Account();
+        account.BalanceChanged += newBalance => Console.WriteLine(newBalance);
 
-        konto.Einzahlen(100);
-        konto.Einzahlen(50);
+        account.Deposit(100);
+        account.Deposit(50);
     }
 
-    private static int Addieren(int a, int b)
+    private static int Add(int a, int b)
     {
         return a + b;
     }

@@ -1,60 +1,60 @@
 namespace LanguageFeaturesCSharp;
 
-// Eigene Exception-Klasse: erbt von Exception, fuer einen spezifischen Fehlerfall im eigenen Code
-internal class UngueltigesAlterException : Exception
+// Custom exception class: inherits from Exception, for a specific error case in our own code
+internal class InvalidAgeException : Exception
 {
-    public UngueltigesAlterException(string nachricht) : base(nachricht)
+    public InvalidAgeException(string message) : base(message)
     {
     }
 }
 
 internal static class Exceptions
 {
-    public static void Zeigen()
+    public static void Show()
     {
-        int ergebnisOk = SicherDividieren(10, 2);
-        int ergebnisFehler = SicherDividieren(10, 0);
+        int resultOk = SafeDivide(10, 2);
+        int resultError = SafeDivide(10, 0);
 
-        Console.WriteLine(ergebnisOk);
-        Console.WriteLine(ergebnisFehler);
+        Console.WriteLine(resultOk);
+        Console.WriteLine(resultError);
 
         try
         {
-            PruefeAlter(-5);
+            ValidateAge(-5);
         }
-        catch (UngueltigesAlterException ex)
+        catch (InvalidAgeException ex)
         {
-            // faengt gezielt nur unsere eigene Exception ab, nicht jede beliebige Exception
+            // catches only our own exception, not any exception whatsoever
             Console.WriteLine(ex.Message);
         }
     }
 
-    // wirft die eigene Exception, wenn der uebergebene Wert fachlich ungueltig ist
-    private static void PruefeAlter(int alter)
+    // throws our own exception if the given value is semantically invalid
+    private static void ValidateAge(int age)
     {
-        if (alter < 0)
+        if (age < 0)
         {
-            throw new UngueltigesAlterException($"Alter darf nicht negativ sein: {alter}");
+            throw new InvalidAgeException($"Age must not be negative: {age}");
         }
     }
 
-    private static int SicherDividieren(int zahler, int nenner)
+    private static int SafeDivide(int numerator, int denominator)
     {
         try
         {
-            int ergebnis = zahler / nenner;
-            return ergebnis;
+            int result = numerator / denominator;
+            return result;
         }
         catch (DivideByZeroException)
         {
-            // catch faengt die Exception ab, statt das Programm abstuerzen zu lassen
-            Console.WriteLine("Fehler: Division durch 0 ist nicht erlaubt.");
+            // catch handles the exception instead of letting the program crash
+            Console.WriteLine("Error: division by 0 is not allowed.");
             return 0;
         }
         finally
         {
-            // finally laeuft immer, egal ob eine Exception aufgetreten ist oder nicht
-            Console.WriteLine("SicherDividieren wurde aufgerufen.");
+            // finally always runs, whether an exception occurred or not
+            Console.WriteLine("SafeDivide was called.");
         }
     }
 }

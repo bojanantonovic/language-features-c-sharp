@@ -1,50 +1,50 @@
 namespace LanguageFeaturesCSharp;
 
-// Interface: legt nur fest, WAS eine Klasse koennen muss, nicht WIE (keine gemeinsame Basisklasse noetig)
-internal interface IFahrzeug
+// Interface: only specifies WHAT a class must be able to do, not HOW (no shared base class needed)
+internal interface IVehicle
 {
-    string Bewegen();
+    string Move();
 }
 
-internal class Auto : IFahrzeug
+internal class Car : IVehicle
 {
-    public string Bewegen()
+    public string Move()
     {
-        return "faehrt auf der Strasse";
+        return "drives on the road";
     }
 }
 
-internal class Fahrrad : IFahrzeug
+internal class Bicycle : IVehicle
 {
-    public string Bewegen()
+    public string Move()
     {
-        return "faehrt auf dem Radweg";
+        return "rides on the bike path";
     }
 }
 
 internal static class Interfaces
 {
-    public static void Zeigen()
+    public static void Show()
     {
-        // Liste vom Interface-Typ: Auto und Fahrrad haben keine gemeinsame Basisklasse,
-        // erfuellen aber beide den Vertrag von IFahrzeug.
-        List<IFahrzeug> fahrzeuge = new List<IFahrzeug>();
-        fahrzeuge.Add(new Auto());
-        fahrzeuge.Add(new Fahrrad());
+        // List of the interface type: Car and Bicycle have no shared base class,
+        // but both fulfil the IVehicle contract.
+        List<IVehicle> vehicles = new List<IVehicle>();
+        vehicles.Add(new Car());
+        vehicles.Add(new Bicycle());
 
-        foreach (IFahrzeug fahrzeug in fahrzeuge)
+        foreach (IVehicle vehicle in vehicles)
         {
-            string bewegung = fahrzeug.Bewegen();
-            Console.WriteLine(bewegung);
+            string movement = vehicle.Move();
+            Console.WriteLine(movement);
         }
 
-        // Select: wandelt jedes Fahrzeug (ueber das Interface) in seinen Bewegungstext um
-        List<string> bewegungen = fahrzeuge.Select(fahrzeug => fahrzeug.Bewegen()).ToList();
+        // Select: turns each vehicle (via the interface) into its movement text
+        List<string> movements = vehicles.Select(vehicle => vehicle.Move()).ToList();
 
-        // OfType<T>: filtert aus der Interface-Liste gezielt nur die Autos heraus
-        int anzahlAutos = fahrzeuge.OfType<Auto>().Count();
+        // OfType<T>: filters just the cars out of the interface list
+        int carCount = vehicles.OfType<Car>().Count();
 
-        Console.WriteLine(string.Join(" / ", bewegungen));
-        Console.WriteLine(anzahlAutos);
+        Console.WriteLine(string.Join(" / ", movements));
+        Console.WriteLine(carCount);
     }
 }

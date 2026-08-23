@@ -2,29 +2,29 @@ namespace LanguageFeaturesCSharp;
 
 internal static class Collections
 {
-    public static void Zeigen()
+    public static void Show()
     {
-        List<int> zahlen = new List<int> { 5, 12, 3, 8, 21, 4 };
+        List<int> numbers = new List<int> { 5, 12, 3, 8, 21, 4 };
 
-        // Where: filtert Elemente, die eine Bedingung erfuellen
-        List<int> geradeZahlen = zahlen.Where(zahl => zahl % 2 == 0).ToList();
+        // Where: filters elements that satisfy a condition
+        List<int> evenNumbers = numbers.Where(number => number % 2 == 0).ToList();
 
-        // Select: wandelt jedes Element um
-        List<int> verdoppelt = zahlen.Select(zahl => zahl * 2).ToList();
+        // Select: transforms each element
+        List<int> doubled = numbers.Select(number => number * 2).ToList();
 
-        // OrderBy: sortiert aufsteigend, ohne die urspruengliche Liste zu veraendern
-        List<int> sortiert = zahlen.OrderBy(zahl => zahl).ToList();
+        // OrderBy: sorts ascending, without changing the original list
+        List<int> sorted = numbers.OrderBy(number => number).ToList();
 
-        // Aggregat-Funktionen liefern direkt einen einzelnen Wert statt einer Liste
-        int summe = zahlen.Sum();
-        double durchschnitt = zahlen.Average();
-        int groessteZahl = zahlen.Max();
+        // Aggregate functions return a single value directly instead of a list
+        int sum = numbers.Sum();
+        double average = numbers.Average();
+        int largestNumber = numbers.Max();
 
-        Console.WriteLine(string.Join(", ", geradeZahlen));
-        Console.WriteLine(string.Join(", ", verdoppelt));
-        Console.WriteLine(string.Join(", ", sortiert));
-        Console.WriteLine(summe);
-        Console.WriteLine(durchschnitt);
-        Console.WriteLine(groessteZahl);
+        Console.WriteLine(string.Join(", ", evenNumbers));
+        Console.WriteLine(string.Join(", ", doubled));
+        Console.WriteLine(string.Join(", ", sorted));
+        Console.WriteLine(sum);
+        Console.WriteLine(average);
+        Console.WriteLine(largestNumber);
     }
 }

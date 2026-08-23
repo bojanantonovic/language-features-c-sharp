@@ -2,20 +2,20 @@ namespace LanguageFeaturesCSharp;
 
 internal static class Generics
 {
-    public static void Zeigen()
+    public static void Show()
     {
-        // Dieselbe Methode Groesser<T> funktioniert fuer int und string,
-        // ohne dass sie fuer jeden Typ neu geschrieben werden muss.
-        int groessereZahl = Groesser(5, 12);
-        string groessererName = Groesser("Anna", "Bob");
+        // The same Greater<T> method works for int and string,
+        // without having to be rewritten for each type.
+        int greaterNumber = Greater(5, 12);
+        string greaterName = Greater("Anna", "Bob");
 
-        Console.WriteLine(groessereZahl);
-        Console.WriteLine(groessererName);
+        Console.WriteLine(greaterNumber);
+        Console.WriteLine(greaterName);
     }
 
-    // Generische Methode: T ist ein Platzhalter fuer einen beliebigen Typ,
-    // der IComparable<T> implementiert (z. B. int, double, string).
-    private static T Groesser<T>(T a, T b) where T : IComparable<T>
+    // Generic method: T is a placeholder for any type
+    // that implements IComparable<T> (e.g. int, double, string).
+    private static T Greater<T>(T a, T b) where T : IComparable<T>
     {
         if (a.CompareTo(b) > 0)
         {

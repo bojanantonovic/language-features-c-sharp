@@ -1,49 +1,49 @@
 namespace LanguageFeaturesCSharp;
 
-// record: kompakte Syntax fuer einen unveraenderlichen Datentyp mit automatischer Werte-Gleichheit
-internal record Adresse(string Strasse, string Stadt);
+// record: compact syntax for an immutable data type with automatic value equality
+internal record Address(string Street, string City);
 
 internal static class Records
 {
-    public static void Zeigen()
+    public static void Show()
     {
-        Adresse adresse1 = new Adresse("Bahnhofstrasse 1", "Zuerich");
-        Adresse adresse2 = new Adresse("Bahnhofstrasse 1", "Zuerich");
+        Address address1 = new Address("Station Street 1", "Zurich");
+        Address address2 = new Address("Station Street 1", "Zurich");
 
-        // records vergleichen ihre Werte, nicht die Referenz (anders als eine normale Klasse)
-        bool sindGleich = adresse1 == adresse2;
+        // records compare their values, not the reference (unlike a regular class)
+        bool areEqual = address1 == address2;
 
-        // with-Expression: erzeugt eine neue Kopie mit einer geaenderten Eigenschaft,
-        // das urspruengliche Objekt bleibt dabei unveraendert
-        Adresse adresse3 = adresse1 with { Stadt = "Bern" };
+        // with expression: creates a new copy with a changed property,
+        // the original object stays unchanged
+        Address address3 = address1 with { City = "Bern" };
 
-        Console.WriteLine(sindGleich);
-        Console.WriteLine(adresse1.Stadt);
-        Console.WriteLine(adresse3.Stadt);
-        Console.WriteLine(adresse1);
+        Console.WriteLine(areEqual);
+        Console.WriteLine(address1.City);
+        Console.WriteLine(address3.City);
+        Console.WriteLine(address1);
 
-        // Liste von records: LINQ funktioniert auf ihnen genauso wie in Collections.cs auf int
-        List<Adresse> adressen = new List<Adresse>
+        // List of records: LINQ works on them just like on int in Collections.cs
+        List<Address> addresses = new List<Address>
         {
-            new Adresse("Bahnhofstrasse 1", "Zuerich"),
-            new Adresse("Marktgasse 5", "Bern"),
-            new Adresse("Seestrasse 12", "Zuerich"),
+            new Address("Station Street 1", "Zurich"),
+            new Address("Market Street 5", "Bern"),
+            new Address("Lake Street 12", "Zurich"),
         };
 
-        // Where + Select: erst filtern, dann nur die Strasse aus dem record herausziehen
-        List<string> zuercherStrassen = adressen
-            .Where(adresse => adresse.Stadt == "Zuerich")
-            .Select(adresse => adresse.Strasse)
+        // Where + Select: filter first, then pull just the street out of the record
+        List<string> zurichStreets = addresses
+            .Where(address => address.City == "Zurich")
+            .Select(address => address.Street)
             .ToList();
 
-        // GroupBy: gruppiert die Adressen anhand einer Eigenschaft des records
-        var adressenProStadt = adressen.GroupBy(adresse => adresse.Stadt);
+        // GroupBy: groups the addresses by a property of the record
+        var addressesByCity = addresses.GroupBy(address => address.City);
 
-        Console.WriteLine(string.Join(", ", zuercherStrassen));
+        Console.WriteLine(string.Join(", ", zurichStreets));
 
-        foreach (var gruppe in adressenProStadt)
+        foreach (var group in addressesByCity)
         {
-            Console.WriteLine($"{gruppe.Key}: {gruppe.Count()}");
+            Console.WriteLine($"{group.Key}: {group.Count()}");
         }
     }
 }

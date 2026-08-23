@@ -1,49 +1,49 @@
 namespace LanguageFeaturesCSharp;
 
-// Enum: benannte Menge fester Werte
-internal enum Wochentag
+// Enum: named set of fixed values
+internal enum Weekday
 {
-    Montag,
-    Dienstag,
-    Mittwoch,
-    Donnerstag,
-    Freitag,
-    Samstag,
-    Sonntag
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday,
+    Sunday
 }
 
 internal static class Enums
 {
-    public static void Zeigen()
+    public static void Show()
     {
-        Wochentag heute = Wochentag.Mittwoch;
+        Weekday today = Weekday.Wednesday;
 
-        // switch-Statement: prueft den Wert und fuehrt den passenden Fall aus
-        string art;
-        switch (heute)
+        // switch statement: checks the value and executes the matching case
+        string kind;
+        switch (today)
         {
-            case Wochentag.Samstag:
-            case Wochentag.Sonntag:
-                art = "Wochenende";
+            case Weekday.Saturday:
+            case Weekday.Sunday:
+                kind = "Weekend";
                 break;
             default:
-                art = "Werktag";
+                kind = "Workday";
                 break;
         }
 
-        Console.WriteLine(heute);
-        Console.WriteLine(art);
+        Console.WriteLine(today);
+        Console.WriteLine(kind);
 
-        // Enum.GetValues<T>() liefert alle Werte des Enums, LINQ funktioniert genauso darauf
-        List<Wochentag> alleTage = Enum.GetValues<Wochentag>().ToList();
+        // Enum.GetValues<T>() returns all values of the enum, LINQ works on it just the same
+        List<Weekday> allDays = Enum.GetValues<Weekday>().ToList();
 
-        List<Wochentag> wochenendTage = alleTage
-            .Where(tag => tag == Wochentag.Samstag || tag == Wochentag.Sonntag)
+        List<Weekday> weekendDays = allDays
+            .Where(day => day == Weekday.Saturday || day == Weekday.Sunday)
             .ToList();
 
-        int anzahlWerktage = alleTage.Count(tag => tag != Wochentag.Samstag && tag != Wochentag.Sonntag);
+        int workdayCount = allDays.Count(day => day != Weekday.Saturday && day != Weekday.Sunday);
 
-        Console.WriteLine(string.Join(", ", wochenendTage));
-        Console.WriteLine(anzahlWerktage);
+        Console.WriteLine(string.Join(", ", weekendDays));
+        Console.WriteLine(workdayCount);
     }
 }

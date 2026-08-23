@@ -1,44 +1,44 @@
 namespace LanguageFeaturesCSharp;
 
-// Extension-Methoden muessen in einer static Klasse stehen. Der erste Parameter mit
-// "this" davor legt fest, welchen Typ die Methode erweitert (hier: string).
-internal static class StringErweiterungen
+// Extension methods must be in a static class. The first parameter with
+// "this" in front determines which type the method extends (here: string).
+internal static class StringExtensions
 {
-    public static string Umdrehen(this string text)
+    public static string Reverse(this string text)
     {
-        char[] zeichen = text.ToCharArray();
-        Array.Reverse(zeichen);
-        return new string(zeichen);
+        char[] characters = text.ToCharArray();
+        Array.Reverse(characters);
+        return new string(characters);
     }
 
-    public static bool IstPalindrom(this string text)
+    public static bool IsPalindrome(this string text)
     {
-        string umgedreht = text.Umdrehen();
-        return string.Equals(text, umgedreht, StringComparison.OrdinalIgnoreCase);
+        string reversed = text.Reverse();
+        return string.Equals(text, reversed, StringComparison.OrdinalIgnoreCase);
     }
 }
 
 internal static class Extensions
 {
-    public static void Zeigen()
+    public static void Show()
     {
-        string wort = "Anna";
+        string word = "Anna";
 
-        // sieht wie ein ganz normaler Methodenaufruf auf string aus,
-        // obwohl string selbst nicht veraendert wurde
-        bool istPalindrom = wort.IstPalindrom();
-        string umgedreht = wort.Umdrehen();
+        // looks like a completely normal method call on string,
+        // even though string itself was not changed
+        bool isPalindrome = word.IsPalindrome();
+        string reversed = word.Reverse();
 
-        Console.WriteLine(istPalindrom);
-        Console.WriteLine(umgedreht);
+        Console.WriteLine(isPalindrome);
+        Console.WriteLine(reversed);
 
-        // Liste von Woertern: die Extension-Methoden lassen sich direkt in LINQ-Lambdas verwenden
-        List<string> woerter = new List<string> { "Anna", "Otto", "Haus", "Level", "Baum" };
+        // List of words: the extension methods can be used directly in LINQ lambdas
+        List<string> words = new List<string> { "Anna", "Otto", "Haus", "Level", "Baum" };
 
-        List<string> palindrome = woerter.Where(w => w.IstPalindrom()).ToList();
-        List<string> umgedrehteWoerter = woerter.Select(w => w.Umdrehen()).ToList();
+        List<string> palindromes = words.Where(w => w.IsPalindrome()).ToList();
+        List<string> reversedWords = words.Select(w => w.Reverse()).ToList();
 
-        Console.WriteLine(string.Join(", ", palindrome));
-        Console.WriteLine(string.Join(", ", umgedrehteWoerter));
+        Console.WriteLine(string.Join(", ", palindromes));
+        Console.WriteLine(string.Join(", ", reversedWords));
     }
 }

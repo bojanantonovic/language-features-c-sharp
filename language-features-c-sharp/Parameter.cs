@@ -2,68 +2,68 @@ namespace LanguageFeaturesCSharp;
 
 internal static class Parameter
 {
-    public static void Zeigen()
+    public static void Show()
     {
-        // out: die Methode MUSS diesem Parameter einen Wert zuweisen, gedacht fuer zusaetzliche Rueckgabewerte
-        bool erfolg = TryDividieren(10, 2, out int ergebnis);
+        // out: the method MUST assign a value to this parameter, meant for extra return values
+        bool success = TryDivide(10, 2, out int result);
 
-        Console.WriteLine(erfolg);
-        Console.WriteLine(ergebnis);
+        Console.WriteLine(success);
+        Console.WriteLine(result);
 
-        // ref: die Methode kann den bestehenden Wert der Variablen lesen UND aendern
-        int zahl = 5;
-        Verdoppeln(ref zahl);
+        // ref: the method can read AND change the variable's existing value
+        int number = 5;
+        Double(ref number);
 
-        Console.WriteLine(zahl);
+        Console.WriteLine(number);
 
-        // in: die Methode bekommt den Wert nur zum Lesen, eine Kopie wird dabei vermieden
-        Vektor a = new Vektor(3, 4);
-        double laenge = Laenge(in a);
+        // in: the method only gets the value for reading, avoiding a copy
+        Vector2Int a = new Vector2Int(3, 4);
+        double length = Length(in a);
 
-        Console.WriteLine(laenge);
+        Console.WriteLine(length);
 
-        // Optionaler Parameter: rabatt hat einen Standardwert, muss also nicht angegeben werden
-        double preisOhneRabatt = PreisBerechnen(100);
-        double preisMitRabatt = PreisBerechnen(100, 0.1);
+        // Optional parameter: discount has a default value, so it doesn't have to be given
+        double priceWithoutDiscount = CalculatePrice(100);
+        double priceWithDiscount = CalculatePrice(100, 0.1);
 
-        Console.WriteLine(preisOhneRabatt);
-        Console.WriteLine(preisMitRabatt);
+        Console.WriteLine(priceWithoutDiscount);
+        Console.WriteLine(priceWithDiscount);
 
-        // params: beliebig viele Argumente werden von der Methode als Array entgegengenommen
-        int summe = Summiere(1, 2, 3, 4, 5);
+        // params: the method accepts any number of arguments as an array
+        int sum = SumAll(1, 2, 3, 4, 5);
 
-        Console.WriteLine(summe);
+        Console.WriteLine(sum);
     }
 
-    private static bool TryDividieren(int zahler, int nenner, out int ergebnis)
+    private static bool TryDivide(int numerator, int denominator, out int result)
     {
-        if (nenner == 0)
+        if (denominator == 0)
         {
-            ergebnis = 0;
+            result = 0;
             return false;
         }
 
-        ergebnis = zahler / nenner;
+        result = numerator / denominator;
         return true;
     }
 
-    private static void Verdoppeln(ref int wert)
+    private static void Double(ref int value)
     {
-        wert *= 2;
+        value *= 2;
     }
 
-    private static double Laenge(in Vektor vektor)
+    private static double Length(in Vector2Int vector)
     {
-        return Math.Sqrt((vektor.X * vektor.X) + (vektor.Y * vektor.Y));
+        return Math.Sqrt((vector.X * vector.X) + (vector.Y * vector.Y));
     }
 
-    private static double PreisBerechnen(double preis, double rabatt = 0.0)
+    private static double CalculatePrice(double price, double discount = 0.0)
     {
-        return preis - (preis * rabatt);
+        return price - (price * discount);
     }
 
-    private static int Summiere(params int[] zahlen)
+    private static int SumAll(params int[] numbers)
     {
-        return zahlen.Sum();
+        return numbers.Sum();
     }
 }
