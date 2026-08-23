@@ -1,0 +1,17 @@
+# JetBrains Rider
+.idea/
+
+# Claude Code
+.claude/
+
+# .NET build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# macOS
+.DS_Store
