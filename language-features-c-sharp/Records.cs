@@ -1,4 +1,4 @@
-namespace Language_Features_C_Sharp;
+namespace LanguageFeaturesCSharp;
 
 // record: kompakte Syntax fuer einen unveraenderlichen Datentyp mit automatischer Werte-Gleichheit
 internal record Adresse(string Strasse, string Stadt);

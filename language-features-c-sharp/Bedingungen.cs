@@ -1,4 +1,4 @@
-namespace Language_Features_C_Sharp;
+namespace LanguageFeaturesCSharp;
 
 internal static class Bedingungen
 {

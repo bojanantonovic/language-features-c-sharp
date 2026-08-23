@@ -1,4 +1,4 @@
-namespace Language_Features_C_Sharp;
+namespace LanguageFeaturesCSharp;
 
 // Klasse mit Konstruktoren: Eigenschaften werden direkt bei der Erzeugung des Objekts gesetzt.
 internal class Buch

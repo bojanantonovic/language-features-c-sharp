@@ -1,4 +1,4 @@
-namespace Language_Features_C_Sharp;
+namespace LanguageFeaturesCSharp;
 
 // struct: Werttyp - wird bei Zuweisung kopiert, im Gegensatz zu einer Klasse (Referenztyp),
 // bei der zwei Variablen dieselbe Instanz teilen wuerden.

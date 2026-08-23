@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Language_Features_C_Sharp;
+namespace LanguageFeaturesCSharp;
 
 // Eigenes Attribut: erbt von Attribute, kann anschliessend auf Klassen oder Methoden angewendet werden
 [AttributeUsage(AttributeTargets.Method)]

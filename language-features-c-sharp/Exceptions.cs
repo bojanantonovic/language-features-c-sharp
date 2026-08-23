@@ -1,4 +1,4 @@
-namespace Language_Features_C_Sharp;
+namespace LanguageFeaturesCSharp;
 
 // Eigene Exception-Klasse: erbt von Exception, fuer einen spezifischen Fehlerfall im eigenen Code
 internal class UngueltigesAlterException : Exception

@@ -1,4 +1,4 @@
-namespace Language_Features_C_Sharp;
+namespace LanguageFeaturesCSharp;
 
 // Extension-Methoden muessen in einer static Klasse stehen. Der erste Parameter mit
 // "this" davor legt fest, welchen Typ die Methode erweitert (hier: string).

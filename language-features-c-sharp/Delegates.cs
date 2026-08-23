@@ -1,4 +1,4 @@
-namespace Language_Features_C_Sharp;
+namespace LanguageFeaturesCSharp;
 
 // Eigener Delegate-Typ: beschreibt nur die Signatur einer Methode (Parameter + Rueckgabewert)
 internal delegate int RechenOperation(int a, int b);

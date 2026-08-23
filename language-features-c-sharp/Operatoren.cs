@@ -1,4 +1,4 @@
-namespace Language_Features_C_Sharp;
+namespace LanguageFeaturesCSharp;
 
 // struct mit ueberladenen Operatoren: definiert, was "+" und "==" fuer diesen eigenen Typ bedeuten
 internal struct Vektor

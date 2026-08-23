@@ -1,4 +1,4 @@
-namespace Language_Features_C_Sharp;
+namespace LanguageFeaturesCSharp;
 
 // Interface: legt nur fest, WAS eine Klasse koennen muss, nicht WIE (keine gemeinsame Basisklasse noetig)
 internal interface IFahrzeug

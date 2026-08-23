@@ -1,4 +1,4 @@
-namespace Language_Features_C_Sharp;
+namespace LanguageFeaturesCSharp;
 
 // Eigener Typ mit Eigenschaften (Properties): Name und Alter koennen gelesen und geschrieben werden.
 internal class Person

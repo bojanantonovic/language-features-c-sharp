@@ -1,4 +1,4 @@
-namespace Language_Features_C_Sharp;
+namespace LanguageFeaturesCSharp;
 
 // Eigene Klasse mit Indexer: erlaubt den Zugriff mit eckigen Klammern wie bei einem Array,
 // obwohl intern ein Dictionary die Daten haelt.
