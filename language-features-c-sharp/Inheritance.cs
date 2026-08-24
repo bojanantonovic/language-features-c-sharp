@@ -58,13 +58,14 @@ internal static class Inheritance
         Console.WriteLine(cat.Name);
         Console.WriteLine(catSound);
 
-        // List of the derived type Dog: LINQ uses the Name property inherited from Animal directly
-        List<Dog> dogs = new List<Dog>
-        {
+        // List of the derived type Dog: LINQ uses the Name property inherited from Animal directly.
+        // Collection expression ([...]): modern, more compact alternative to "new List<Dog> { ... }".
+        List<Dog> dogs =
+        [
             new Dog("Rex"),
             new Dog("Bello"),
             new Dog("Ari"),
-        };
+        ];
 
         List<string> sortedDogNames = dogs
             .OrderBy(d => d.Name)

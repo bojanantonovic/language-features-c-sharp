@@ -22,13 +22,14 @@ internal static class Tuples
         Console.WriteLine(minMax.min);
         Console.WriteLine(minMax.max);
 
-        // List of tuples: LINQ works the same as with any other type
-        List<(string name, int age)> people = new List<(string name, int age)>
-        {
+        // List of tuples: LINQ works the same as with any other type.
+        // Collection expression ([...]): modern, more compact alternative to "new List<...> { ... }".
+        List<(string name, int age)> people =
+        [
             ("Alice", 30),
             ("Bob", 25),
             ("Carol", 40),
-        };
+        ];
 
         List<string> namesOver28 = people
             .Where(p => p.age > 28)

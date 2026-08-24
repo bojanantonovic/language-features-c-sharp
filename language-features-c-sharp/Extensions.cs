@@ -32,8 +32,9 @@ internal static class Extensions
         Console.WriteLine(isPalindrome);
         Console.WriteLine(reversed);
 
-        // List of words: the extension methods can be used directly in LINQ lambdas
-        List<string> words = new List<string> { "Anna", "Otto", "Haus", "Level", "Baum" };
+        // List of words: the extension methods can be used directly in LINQ lambdas.
+        // Collection expression ([...]): modern, more compact alternative to "new List<string> { ... }".
+        List<string> words = ["Anna", "Otto", "Haus", "Level", "Baum"];
 
         List<string> palindromes = words.Where(w => w.IsPalindrome()).ToList();
         List<string> reversedWords = words.Select(w => w.Reverse()).ToList();

@@ -17,8 +17,9 @@ internal static class Iterators
 
         Console.WriteLine(sum);
 
-        // Custom iterator over a list: returns the elements in reverse order
-        List<string> names = new List<string> { "Alice", "Bob", "Carol" };
+        // Custom iterator over a list: returns the elements in reverse order.
+        // Collection expression ([...]): modern, more compact alternative to "new List<string> { ... }".
+        List<string> names = ["Alice", "Bob", "Carol"];
 
         foreach (string name in Reversed(names))
         {

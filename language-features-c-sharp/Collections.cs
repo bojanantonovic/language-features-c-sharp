@@ -4,7 +4,8 @@ internal static class Collections
 {
     public static void Show()
     {
-        List<int> numbers = new List<int> { 5, 12, 3, 8, 21, 4 };
+        // Collection expression ([...]): modern, more compact alternative to "new List<int> { ... }".
+        List<int> numbers = [5, 12, 3, 8, 21, 4];
 
         // Where: filters elements that satisfy a condition
         List<int> evenNumbers = numbers.Where(number => number % 2 == 0).ToList();

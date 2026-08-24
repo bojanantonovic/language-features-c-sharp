@@ -30,14 +30,14 @@ internal static class Structs
         Console.WriteLine(pointAX);
         Console.WriteLine(pointBX);
 
-        // List of structs: Select computes a new value from each point,
-        // the original list stays unchanged
-        List<Point> points = new List<Point>
-        {
+        // List of structs: Select computes a new value from each point, the original list stays unchanged.
+        // Collection expression ([...]): modern, more compact alternative to "new List<Point> { ... }".
+        List<Point> points =
+        [
             new Point(1, 2),
             new Point(-3, 4),
             new Point(5, -1),
-        };
+        ];
 
         List<double> distancesFromOrigin = points
             .Select(p => Math.Sqrt((p.X * p.X) + (p.Y * p.Y)))

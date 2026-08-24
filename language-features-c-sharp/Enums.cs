@@ -18,18 +18,13 @@ internal static class Enums
     {
         Weekday today = Weekday.Wednesday;
 
-        // switch statement: checks the value and executes the matching case
-        string kind;
-        switch (today)
+        // switch expression: more compact than a switch statement, returns a value directly.
+        // "or" combines several cases in one arm instead of falling through.
+        string kind = today switch
         {
-            case Weekday.Saturday:
-            case Weekday.Sunday:
-                kind = "Weekend";
-                break;
-            default:
-                kind = "Workday";
-                break;
-        }
+            Weekday.Saturday or Weekday.Sunday => "Weekend",
+            _ => "Workday"
+        };
 
         Console.WriteLine(today);
         Console.WriteLine(kind);

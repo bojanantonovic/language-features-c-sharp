@@ -29,13 +29,14 @@ internal static class Classes
         Console.WriteLine(bob.Name);
         Console.WriteLine(bob.Age);
 
-        // List of objects: LINQ works on custom classes too, not just primitive types
-        List<Person> people = new List<Person>
-        {
+        // List of objects: LINQ works on custom classes too, not just primitive types.
+        // Collection expression ([...]): modern, more compact alternative to "new List<Person> { ... }".
+        List<Person> people =
+        [
             alice,
             bob,
             new Person { Name = "Carol", Age = 40 },
-        };
+        ];
 
         // OrderByDescending + First: find the person with the highest age
         Person oldest = people.OrderByDescending(person => person.Age).First();

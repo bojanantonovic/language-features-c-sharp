@@ -31,8 +31,9 @@ internal static class Indexer
         Console.WriteLine(mondayAppointment);
         Console.WriteLine(tuesdayAppointment);
 
-        // List of days: LINQ uses the indexer to look up the appointment for each day
-        List<string> days = new List<string> { "Monday", "Tuesday", "Wednesday" };
+        // List of days: LINQ uses the indexer to look up the appointment for each day.
+        // Collection expression ([...]): modern, more compact alternative to "new List<string> { ... }".
+        List<string> days = ["Monday", "Tuesday", "Wednesday"];
 
         List<string> plan = days.Select(day => $"{day}: {schedule[day]}").ToList();
 

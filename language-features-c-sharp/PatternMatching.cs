@@ -48,8 +48,9 @@ internal static class PatternMatching
             Console.WriteLine(number);
         }
 
-        // List of mixed animals: LINQ with a pattern in the lambda counts only the dogs
-        List<Animal> animals = new List<Animal> { new Dog("Rex"), new Cat("Minka"), new Dog("Bello") };
+        // List of mixed animals: LINQ with a pattern in the lambda counts only the dogs.
+        // Collection expression ([...]): modern, more compact alternative to "new List<Animal> { ... }".
+        List<Animal> animals = [new Dog("Rex"), new Cat("Minka"), new Dog("Bello")];
         int dogCount = animals.Count(a => a is Dog);
 
         Console.WriteLine(dogCount);

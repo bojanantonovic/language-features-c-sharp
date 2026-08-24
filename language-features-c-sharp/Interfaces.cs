@@ -28,9 +28,8 @@ internal static class Interfaces
     {
         // List of the interface type: Car and Bicycle have no shared base class,
         // but both fulfil the IVehicle contract.
-        List<IVehicle> vehicles = new List<IVehicle>();
-        vehicles.Add(new Car());
-        vehicles.Add(new Bicycle());
+        // Collection expression ([...]): modern, more compact alternative to "new List<T>()" + repeated Add(...).
+        List<IVehicle> vehicles = [new Car(), new Bicycle()];
 
         foreach (IVehicle vehicle in vehicles)
         {

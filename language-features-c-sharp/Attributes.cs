@@ -32,8 +32,9 @@ internal static class Attributes
         MethodInfo[] allMethods = typeof(Attributes).GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
 
         List<string> authorsByMethod = allMethods
-            .Where(m => m.GetCustomAttribute<AuthorAttribute>() is not null)
-            .Select(m => $"{m.Name}: {m.GetCustomAttribute<AuthorAttribute>()!.Name}")
+            .Select(m => (m.Name, Author: m.GetCustomAttribute<AuthorAttribute>()))
+            .Where(entry => entry.Author is not null)
+            .Select(entry => $"{entry.Name}: {entry.Author!.Name}")
             .ToList();
 
         Console.WriteLine(string.Join(" | ", authorsByMethod));

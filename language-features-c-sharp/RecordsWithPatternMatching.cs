@@ -41,8 +41,9 @@ internal static class RecordsWithPatternMatching
         Console.WriteLine(validArea);
         Console.WriteLine(invalidArea);
 
-        // List of mixed shapes: LINQ with an is pattern in the lambda filters by the actual record type
-        List<object> shapes = new List<object> { new Circle(1), new Rectangle(2, 3), new Square(4), new Circle(10) };
+        // List of mixed shapes: LINQ with an is pattern in the lambda filters by the actual record type.
+        // Collection expression ([...]): modern, more compact alternative to "new List<object> { ... }".
+        List<object> shapes = [new Circle(1), new Rectangle(2, 3), new Square(4), new Circle(10)];
 
         int circleCount = shapes.Count(shape => shape is Circle);
         List<double> circleRadii = shapes.OfType<Circle>().Select(circle => circle.Radius).ToList();

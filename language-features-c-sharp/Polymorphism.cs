@@ -4,11 +4,9 @@ internal static class Polymorphism
 {
     public static void Show()
     {
-        // List of the base type Animal, but containing objects of different derived types
-        List<Animal> animals = new List<Animal>();
-        animals.Add(new Dog("Rex"));
-        animals.Add(new Cat("Minka"));
-        animals.Add(new Dog("Bello"));
+        // List of the base type Animal, but containing objects of different derived types.
+        // Collection expression ([...]): modern, more compact alternative to "new List<T>()" + repeated Add(...).
+        List<Animal> animals = [new Dog("Rex"), new Cat("Minka"), new Dog("Bello")];
 
         // Polymorphism: the same call to MakeSound() gives a different result depending on the
         // actual type - the compiler only knows Animal here, but at runtime the matching

@@ -36,8 +36,9 @@ internal static class Nullability
 
         Console.WriteLine(nameLength);
 
-        // List with possible gaps: LINQ filters out the null entries
-        List<int?> numbersWithGaps = new List<int?> { 5, null, 12, null, 8 };
+        // List with possible gaps: LINQ filters out the null entries.
+        // Collection expression ([...]): modern, more compact alternative to "new List<int?> { ... }".
+        List<int?> numbersWithGaps = [5, null, 12, null, 8];
 
         List<int> presentNumbers = numbersWithGaps
             .Where(number => number.HasValue)

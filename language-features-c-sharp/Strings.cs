@@ -29,11 +29,7 @@ internal static class Strings
         string[] parts = csv.Split(',');
 
         // Trim removes whitespace at the start/end of each part
-        List<string> trimmedParts = new List<string>();
-        foreach (string part in parts)
-        {
-            trimmedParts.Add(part.Trim());
-        }
+        List<string> trimmedParts = parts.Select(part => part.Trim()).ToList();
 
         // Join: combines several parts back into one string
         string joined = string.Join(" | ", trimmedParts);

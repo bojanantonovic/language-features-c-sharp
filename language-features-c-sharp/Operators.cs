@@ -64,8 +64,9 @@ internal static class Operators
         Console.WriteLine(areEqual);
         Console.WriteLine(areNotEqual);
 
-        // List of vectors: Aggregate repeatedly applies operator + to add them all up
-        List<Vector2Int> vectors = new List<Vector2Int> { new Vector2Int(1, 1), new Vector2Int(2, 3), new Vector2Int(-1, 4) };
+        // List of vectors: Aggregate repeatedly applies operator + to add them all up.
+        // Collection expression ([...]): modern, more compact alternative to "new List<Vector2Int> { ... }".
+        List<Vector2Int> vectors = [new Vector2Int(1, 1), new Vector2Int(2, 3), new Vector2Int(-1, 4)];
 
         Vector2Int totalSum = vectors.Aggregate((v1, v2) => v1 + v2);
 

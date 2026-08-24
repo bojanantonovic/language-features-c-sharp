@@ -22,13 +22,14 @@ internal static class Records
         Console.WriteLine(address3.City);
         Console.WriteLine(address1);
 
-        // List of records: LINQ works on them just like on int in Collections.cs
-        List<Address> addresses = new List<Address>
-        {
+        // List of records: LINQ works on them just like on int in Collections.cs.
+        // Collection expression ([...]): modern, more compact alternative to "new List<Address> { ... }".
+        List<Address> addresses =
+        [
             new Address("Station Street 1", "Zurich"),
             new Address("Market Street 5", "Bern"),
             new Address("Lake Street 12", "Zurich"),
-        };
+        ];
 
         // Where + Select: filter first, then pull just the street out of the record
         List<string> zurichStreets = addresses

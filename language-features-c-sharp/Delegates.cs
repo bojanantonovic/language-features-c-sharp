@@ -33,13 +33,14 @@ internal static class Delegates
         Console.WriteLine(sum);
         Console.WriteLine(product);
 
-        // List of delegates: LINQ can apply each one to the same arguments
-        List<CalculationOperation> operations = new List<CalculationOperation>
-        {
+        // List of delegates: LINQ can apply each one to the same arguments.
+        // Collection expression ([...]): modern, more compact alternative to "new List<...> { ... }".
+        List<CalculationOperation> operations =
+        [
             Add,
             (a, b) => a * b,
             (a, b) => a - b,
-        };
+        ];
 
         List<int> results = operations.Select(operation => operation(10, 3)).ToList();
 
