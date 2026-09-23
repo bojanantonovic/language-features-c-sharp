@@ -1,10 +1,19 @@
 using LanguageFeaturesCSharp;
 using LanguageFeaturesCSharp.Classes;
 using LanguageFeaturesCSharp.Collections;
+using LanguageFeaturesCSharp.DataTypes;
 using LanguageFeaturesCSharp.Generics;
+using LanguageFeaturesCSharp.Immutable;
 using LanguageFeaturesCSharp.Loops;
 
 Variables.Show();
+ObjectType.Show();
+IntegerTypes.Show();
+UnsignedTypes.Show();
+FloatingPointTypes.Show();
+CharactersAndBooleans.Show();
+Conversions.Show();
+BuiltInStructs.Show();
 Conditions.Show();
 Loops.Show();
 Methods.Show();
@@ -22,6 +31,7 @@ Strings.Show();
 Exceptions.Show();
 await Async.ShowAsync();
 Collections.Show();
+ImmutableCollections.Show();
 Enums.Show();
 Structs.Show();
 Records.Show();

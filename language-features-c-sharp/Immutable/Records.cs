@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LanguageFeaturesCSharp.Classes;
+namespace LanguageFeaturesCSharp.Immutable;
 
 // record: compact syntax for an immutable data type with automatic value equality
 internal record Address(string Street, string City);
