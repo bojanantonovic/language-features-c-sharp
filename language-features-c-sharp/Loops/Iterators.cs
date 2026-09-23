@@ -1,4 +1,4 @@
-namespace LanguageFeaturesCSharp;
+namespace LanguageFeaturesCSharp.Loops;
 
 internal static class Iterators
 {

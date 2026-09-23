@@ -1,4 +1,6 @@
-namespace LanguageFeaturesCSharp;
+using LanguageFeaturesCSharp.Classes;
+
+namespace LanguageFeaturesCSharp.Generics;
 
 internal static class Variance
 {

@@ -1,4 +1,4 @@
-namespace LanguageFeaturesCSharp;
+namespace LanguageFeaturesCSharp.Classes;
 
 // Base class
 internal class Animal

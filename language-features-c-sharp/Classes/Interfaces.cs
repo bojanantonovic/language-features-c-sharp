@@ -1,4 +1,4 @@
-namespace LanguageFeaturesCSharp;
+namespace LanguageFeaturesCSharp.Classes;
 
 // Interface: only specifies WHAT a class must be able to do, not HOW (no shared base class needed)
 internal interface IVehicle

@@ -1,4 +1,4 @@
-namespace LanguageFeaturesCSharp;
+namespace LanguageFeaturesCSharp.Classes;
 
 // Class with constructors: properties are set directly when the object is created.
 internal class Book

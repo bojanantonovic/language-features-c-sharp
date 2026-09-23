@@ -1,4 +1,4 @@
-namespace LanguageFeaturesCSharp;
+namespace LanguageFeaturesCSharp.Generics;
 
 internal static class Generics
 {

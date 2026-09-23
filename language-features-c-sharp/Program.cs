@@ -1,4 +1,8 @@
 using LanguageFeaturesCSharp;
+using LanguageFeaturesCSharp.Classes;
+using LanguageFeaturesCSharp.Collections;
+using LanguageFeaturesCSharp.Generics;
+using LanguageFeaturesCSharp.Loops;
 
 Variables.Show();
 Conditions.Show();

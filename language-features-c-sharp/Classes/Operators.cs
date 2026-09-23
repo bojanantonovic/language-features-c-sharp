@@ -1,4 +1,4 @@
-namespace LanguageFeaturesCSharp;
+namespace LanguageFeaturesCSharp.Classes;
 
 // struct with overloaded operators: defines what "+" and "==" mean for this custom type
 internal struct Vector2Int

@@ -1,4 +1,4 @@
-namespace LanguageFeaturesCSharp;
+namespace LanguageFeaturesCSharp.Classes;
 
 // struct: value type - copied on assignment, unlike a class (reference type),
 // where two variables would share the same instance.

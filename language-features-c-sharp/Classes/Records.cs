@@ -1,4 +1,4 @@
-namespace LanguageFeaturesCSharp;
+namespace LanguageFeaturesCSharp.Classes;
 
 // record: compact syntax for an immutable data type with automatic value equality
 internal record Address(string Street, string City);

@@ -1,4 +1,4 @@
-namespace LanguageFeaturesCSharp;
+namespace LanguageFeaturesCSharp.Classes;
 
 // Custom type with properties: Name and Age can be read and written.
 internal class Person

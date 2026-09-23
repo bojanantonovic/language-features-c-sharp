@@ -1,4 +1,4 @@
-namespace LanguageFeaturesCSharp;
+namespace LanguageFeaturesCSharp.Classes;
 
 // Custom class with an indexer: allows square-bracket access like an array,
 // even though a dictionary holds the data internally.
