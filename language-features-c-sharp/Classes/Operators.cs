@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace LanguageFeaturesCSharp.Classes;
 
 // struct with overloaded operators: defines what "+" and "==" mean for this custom type

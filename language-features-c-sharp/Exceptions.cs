@@ -1,3 +1,5 @@
+using System;
+
 namespace LanguageFeaturesCSharp;
 
 // Custom exception class: inherits from Exception, for a specific error case in our own code

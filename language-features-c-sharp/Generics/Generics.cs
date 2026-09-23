@@ -1,3 +1,5 @@
+using System;
+
 namespace LanguageFeaturesCSharp.Generics;
 
 internal static class Generics

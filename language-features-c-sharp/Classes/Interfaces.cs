@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace LanguageFeaturesCSharp.Classes;
 
 // Interface: only specifies WHAT a class must be able to do, not HOW (no shared base class needed)

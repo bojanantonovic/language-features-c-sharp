@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace LanguageFeaturesCSharp;
 
 // Extension methods must be in a static class. The first parameter with

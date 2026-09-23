@@ -1,3 +1,5 @@
+using System;
+
 namespace LanguageFeaturesCSharp;
 
 internal static class Methods

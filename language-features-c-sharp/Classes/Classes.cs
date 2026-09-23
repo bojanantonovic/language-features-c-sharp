@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace LanguageFeaturesCSharp.Classes;
 
 // Custom type with properties: Name and Age can be read and written.

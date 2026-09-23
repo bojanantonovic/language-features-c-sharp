@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace LanguageFeaturesCSharp.Classes;
 
 // record: compact syntax for an immutable data type with automatic value equality

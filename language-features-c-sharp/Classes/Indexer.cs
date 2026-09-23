@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace LanguageFeaturesCSharp.Classes;
 
 // Custom class with an indexer: allows square-bracket access like an array,
