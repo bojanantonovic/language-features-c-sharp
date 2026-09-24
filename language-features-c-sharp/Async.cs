@@ -6,8 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Runtime.CompilerServices;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -48,7 +46,6 @@ internal static class Async
             }
 
             await ErrorHandlingAsync(workingDirectory);
-            await StreamingAsync(workingDirectory);
             await CpuBoundWorkAsync(workingDirectory);
             await ProgressReportingAsync(workingDirectory);
             await CachedValueTaskAsync(workingDirectory);
@@ -313,93 +310,7 @@ internal static class Async
     }
 
     // ---------------------------------------------------------------------
-    // 7. Use case: results that arrive piece by piece (IAsyncEnumerable)
-    // ---------------------------------------------------------------------
-
-    private const string LogFileName = "application.log";
-    private const string ErrorMarker = "ERROR";
-    private const int LogLineCount = 50_000;
-    private const int ErrorEveryNthLine = 7_500;
-    private const int InterestingErrorCount = 3;
-
-    private const string MeasurementsFileName = "measurements.json";
-    private const int MeasurementCount = 10_000;
-    private const double MeasurementBaseValue = 20.0;
-    private const double MeasurementStep = 0.01;
-
-    private static async Task StreamingAsync(string workingDirectory)
-    {
-        string logPath = Path.Combine(workingDirectory, LogFileName);
-
-        // await foreach consumes the lines as they arrive. The 50 000 lines are never
-        // in memory as a whole - File.ReadAllLinesAsync would do exactly that.
-        // ReadErrorsAsync filters the stream, so the caller sees only the errors, and
-        // because the values are pulled lazily, break really stops the reading.
-        List<string> firstErrors = [];
-
-        await foreach (string error in ReadErrorsAsync(logPath))
-        {
-            firstErrors.Add(error);
-
-            if (firstErrors.Count == InterestingErrorCount)
-            {
-                break;
-            }
-        }
-
-        Console.WriteLine($"{firstErrors.Count} errors read, last one: {firstErrors[^1]}");
-
-        // The same idea for JSON: SerializeAsync writes into the stream instead of
-        // building a huge string in memory first...
-        string measurementsPath = Path.Combine(workingDirectory, MeasurementsFileName);
-
-        IEnumerable<Measurement> measurements = Enumerable
-            .Range(0, MeasurementCount)
-            .Select(index => new Measurement($"sensor-{index % Repositories.Length}", MeasurementBaseValue + index * MeasurementStep));
-
-        await using (FileStream writeStream = OpenForWriting(measurementsPath))
-        {
-            await JsonSerializer.SerializeAsync(writeStream, measurements);
-        }
-
-        // ...and DeserializeAsyncEnumerable yields the elements while the file is still
-        // being read, instead of parsing the whole array first.
-        await using FileStream readStream = OpenForReading(measurementsPath);
-
-        double maximum = double.MinValue;
-        int count = 0;
-
-        await foreach (Measurement? measurement in JsonSerializer.DeserializeAsyncEnumerable<Measurement>(readStream))
-        {
-            if (measurement is null)
-            {
-                continue;
-            }
-
-            count++;
-            maximum = Math.Max(maximum, measurement.Value);
-        }
-
-        Console.WriteLine($"{count} measurements streamed, maximum {maximum:F2}");
-    }
-
-    // async + IAsyncEnumerable<T> + yield return = asynchronous iterator.
-    // [EnumeratorCancellation] connects a token from WithCancellation to the parameter.
-    private static async IAsyncEnumerable<string> ReadErrorsAsync(
-        string logPath,
-        [EnumeratorCancellation] CancellationToken cancellationToken = default)
-    {
-        await foreach (string line in File.ReadLinesAsync(logPath, cancellationToken))
-        {
-            if (line.Contains(ErrorMarker, StringComparison.Ordinal))
-            {
-                yield return line;
-            }
-        }
-    }
-
-    // ---------------------------------------------------------------------
-    // 8. Use case: I/O asynchronous, calculation on the thread pool (Task.Run)
+    // 7. Use case: I/O asynchronous, calculation on the thread pool (Task.Run)
     // ---------------------------------------------------------------------
 
     private static async Task CpuBoundWorkAsync(string workingDirectory)
@@ -417,7 +328,7 @@ internal static class Async
     }
 
     // ---------------------------------------------------------------------
-    // 9. Use case: progress of a long copy (IProgress<T>)
+    // 8. Use case: progress of a long copy (IProgress<T>)
     // ---------------------------------------------------------------------
 
     private const string LogCopyFileName = "application.log.bak";
@@ -473,7 +384,7 @@ internal static class Async
     }
 
     // ---------------------------------------------------------------------
-    // 10. Use case: cached configuration without a Task allocation (ValueTask)
+    // 9. Use case: cached configuration without a Task allocation (ValueTask)
     // ---------------------------------------------------------------------
 
     private const string ConfigurationFileName = "settings.json";
@@ -531,6 +442,11 @@ internal static class Async
     // Sample data and helpers
     // ---------------------------------------------------------------------
 
+    private const string LogFileName = "application.log";
+    private const string ErrorMarker = "ERROR";
+    private const int LogLineCount = 50_000;
+    private const int ErrorEveryNthLine = 7_500;
+
     private static readonly string[] ReportFileNames = ["report-q1.txt", "report-q2.txt", "report-q3.txt"];
 
     // FileOptions.Asynchronous tells the operating system that this handle is used
@@ -581,8 +497,6 @@ internal static class Async
 internal sealed record GitHubRepository(
     [property: JsonPropertyName("full_name")] string FullName,
     [property: JsonPropertyName("stargazers_count")] int StarCount);
-
-internal sealed record Measurement(string Sensor, double Value);
 
 // Minimal IProgress<T> implementation that calls back on the reporting thread.
 internal sealed class SynchronousProgress : IProgress<int>
